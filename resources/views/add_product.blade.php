@@ -1,22 +1,7 @@
 @extends('layouts/layout')
 @section('body')
-<div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5">Сообщение</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body" id="modalText">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" id="modalOk" class="btn btn-secondary" data-bs-dismiss="modal"
-                    style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Ок</button>
-        </div>
-        </div>
-    </div>
-</div>
+
+@include('templates.modal_alert')
 
 <div class="row py-4">
     <div class="col offset-1">
@@ -25,7 +10,7 @@
 </div>
 <div class="row py-4">
     <div class="col-6 offset-3">
-        <form id="form" action="{{ route('add_product_api') }}" class="card p-3 bg-light" method="POST" enctype="multipart/form-data">
+        <form id="form" class="card p-3 bg-light" enctype="multipart/form-data">
             @csrf
         
             <div class="mb-3 row">
@@ -171,7 +156,7 @@
             <div class="text-center">
                 <button  type="submit" class="btn btn-primary"
                     id="addProduct"
-                    data-bs-toggle="modal" 
+                    data-bs-toggle="modal"
                     data-bs-target="#alertModal"
                     style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Добавить товар</button>
             </div>
@@ -179,5 +164,5 @@
     </div>
 </div>
 </div>
-<script src="{{asset('js/product.js')}} "></script>
+<script src="{{asset('js/add_product.js')}} "></script>
 @endsection

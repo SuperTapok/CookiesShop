@@ -27,11 +27,14 @@ class ActivityController extends Controller
 
         $activity->name =  $input['name'];
         $activity->cookies =  $input['cookies'];
-        $activity->description = $input['description'];
+
+        $activity->description = $input['description'] ?? "";
 
         $activity->save();
 
-        return redirect()->back();
+        return $this->successResponse([
+            'message' => "Наградное действие добавлено!"
+        ]);
 
     }
 
@@ -49,12 +52,13 @@ class ActivityController extends Controller
 
         $activity->name =  $input['name'];
         $activity->cookies =  $input['cookies'];
-        $activity->description = $input['description'];
+        $activity->description = $input['description'] ?? "";
 
         $activity->save();
 
-        return redirect()->back();
-
+        return $this->successResponse([
+            'message' => "Наградное действие изменено!"
+        ]);
     }
 
     public function delete_activity ($id) {
@@ -63,7 +67,7 @@ class ActivityController extends Controller
         $activity->delete();
 
         return $this->successResponse([
-            'message' => "Наградное действие удалено."
+            'message' => "Наградное действие удалено!"
         ]);
     }
 
@@ -85,7 +89,7 @@ class ActivityController extends Controller
         $employee->save();
 
         return $this->successResponse([
-            'message' => "Награждение начислено на счёт сотрудника."
+            'message' => "Награждение начислено на счёт сотрудника!"
         ]);
     }
 }

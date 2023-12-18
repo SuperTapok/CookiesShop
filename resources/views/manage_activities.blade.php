@@ -1,5 +1,10 @@
 @extends('layouts/layout')
 @section('body')
+
+@include('templates.modal_alert')
+
+@include('templates.modal_confirm')
+
 <div class="row py-3">
     <h1>Управление наградными действиями</h1>
 </div>
@@ -11,7 +16,9 @@
                 <tr>
                     <td>{{ $activity->name }}</td>
                     <td><button class="del_btn btn btn-danger"
-                        data-route="{{ route('delete_activity', ['id' => $activity->id]) }}">Удалить действие</button></td>
+                        data-bs-toggle="modal" 
+                        data-bs-target="#confirmModal"
+                        data-product="{{ $activity->id }}">Удалить действие</button></td>
                         <td><a class="btn btn-primary" href="{{ route('edit_activity', ['id' => $activity->id]) }}">Изменить действие</a></td>
                 </tr>
                 @endforeach
@@ -21,5 +28,5 @@
     </div>
 </div>
 </div>
-<script src="{{ asset('js/manage.js') }} "></script>
+<script src="{{ asset('js/manage_activity.js') }} "></script>
 @endsection

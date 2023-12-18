@@ -72,7 +72,7 @@ class CartController extends Controller
         $order->save();
 
         return $this->successResponse([
-            'message' => "Товар успешно добавлен"
+            'message' => "Товар добавлен в корзину!"
         ]);
     }
 
@@ -90,7 +90,7 @@ class CartController extends Controller
         $order->save();
 
         return $this->successResponse([
-            'message' => "Товар успешно удалён"
+            'message' => "Товар успешно удалён из корзины!"
         ]);
     }
 

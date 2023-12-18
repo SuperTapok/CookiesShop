@@ -1,5 +1,8 @@
 @extends('layouts/layout')
 @section('body')
+
+@include('templates.modal_alert')
+
 <div class="row py-3">
     <div class="col offset-1">
         <h2>Редактирование товара</h2>
@@ -7,7 +10,7 @@
 </div>
 <div class="row py-4">
     <div class="col-6 offset-3">
-        <form action="{{ route('edit_product_api') }}" class="card p-3 bg-light" method="POST" enctype="multipart/form-data">
+        <form class="card p-3 bg-light" id="form" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{ $product->id }}">
 
@@ -180,10 +183,14 @@
                 </div>
             </div>
             <div class="text-center">
-                <button class="btn btn-primary" style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Изменить товар</button>
+                <button  type="submit" class="btn btn-primary"
+                id="addProduct"
+                data-bs-toggle="modal"
+                data-bs-target="#alertModal" style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Изменить товар</button>
             </div>
         </form>
     </div>
 </div>
 </div>
+<script src="{{asset('js/edit_product.js')}} "></script>
 @endsection
