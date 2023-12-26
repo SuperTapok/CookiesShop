@@ -41,6 +41,6 @@
 </div>
 </div>
 
-<script src="{{asset('js/add_activity.js')}} "></script>
+<script src="{{asset('js/activity/add.js')}} "></script>
 
 @endsection

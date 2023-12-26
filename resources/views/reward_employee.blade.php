@@ -14,7 +14,7 @@
             <div class="mb-3 row">
                 <label for="employee" class="col col-form-label">Выберите сотрудника</label>
                 <div class="col">
-                    <select name="employee" id="employee" class="form-control">
+                    <select name="employee" id="employee" class="form-control" required>
                         @foreach ($employees as $employee)
                             <option value="{{ $employee->id }}">{{ $employee->surname }} {{ $employee->name }}</option>
                         @endforeach
@@ -25,7 +25,7 @@
             <div class="mb-3 row">
                 <label for="activity" class="col col-form-label">Выберите наградное действие</label>
                 <div class="col">
-                    <select name="activity" id="activity" class="form-control">
+                    <select name="activity" id="activity" class="form-control" required>
                         @foreach ($activities as $activity)
                             <option value="{{ $activity->id }}">{{ $activity->name }} - {{ $activity->cookies }} пр.</option>
                         @endforeach
@@ -45,6 +45,6 @@
         
     </div>
 </div>
-<script src="{{asset('js/reward.js')}} "></script>
+<script src="{{asset('js/activity/reward.js')}} "></script>
 </div>
 @endsection

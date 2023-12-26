@@ -19,26 +19,20 @@
                         @else
                             <div id="carousel{{ $product['id'] }}" class="carousel slide" data-bs-theme="dark">
                                 <div class="carousel-indicators">
-                                    @for ($i = 0; $i < $product['images']->count(); $i++)
-                                        @if ($i == 0)
-                                            <button type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide-to="{{ $i }}"
-                                                class="active" aria-current="true"></button>
-                                        @else
-                                            <button type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide-to="{{ $i }}"></button>
-                                        @endif
+                                    <button type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide-to="0"
+                                            class="active" aria-current="true"></button>
+                                    @for ($i = 1; $i < $product['images']->count(); $i++)
+                                        <button type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide-to="{{ $i }}"></button>
                                     @endfor
                                 </div>
                                 <div class="carousel-inner">
-                                    @for ($i = 0; $i < $product['images']->count(); $i++)
-                                        @if ($i == 0)
-                                            <div class="carousel-item active">
-                                                <img src="{{ asset($product['images'][$i]->url) }}" class="d-block w-100">
-                                            </div>
-                                        @else
-                                            <div class="carousel-item">
-                                                <img src="{{ asset($product['images'][$i]->url) }}" class="d-block w-100">
-                                            </div>
-                                        @endif                  
+                                    <div class="carousel-item active">
+                                        <img src="{{ asset($product['images'][0]->url) }}" class="d-block w-100">
+                                    </div>
+                                    @for ($i = 1; $i < $product['images']->count(); $i++)
+                                        <div class="carousel-item">
+                                            <img src="{{ asset($product['images'][$i]->url) }}" class="d-block w-100">
+                                        </div>
                                     @endfor
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide="prev">

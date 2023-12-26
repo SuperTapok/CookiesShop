@@ -14,14 +14,14 @@
                 <label for="name" class="col col-form-label">Название</label>
                 <div class="col">
                     <input type="text" id='name' name="name" placeholder="Название..." class="form-control"
-                    value="{{ $activity->name }}"/>
+                    value="{{ $activity->name }}" required/>
                 </div>
                 <input type="hidden" id='id' name="id" value="{{ $activity->id }}">              
             </div>
             <div class="mb-3 row">
                 <label for="cookies" class="col col-form-label">Количество пряней</label>
                 <div class="col">
-                    <input type="number" id='cookies' name="cookies" class="form-control" value="{{ $activity->cookies }}"/>
+                    <input type="number" id='cookies' name="cookies" class="form-control" value="{{ $activity->cookies }}" required/>
                 </div> 
             </div>
             <div class="mb-3 row">
@@ -40,6 +40,6 @@
         </form>
     </div>
 </div>
-<script src="{{ asset('js/edit_activity.js') }}"></script>
+<script src="{{ asset('js/activity/edit.js') }}"></script>
 </div>
 @endsection

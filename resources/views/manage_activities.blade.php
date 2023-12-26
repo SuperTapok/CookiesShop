@@ -28,5 +28,5 @@
     </div>
 </div>
 </div>
-<script src="{{ asset('js/manage_activity.js') }} "></script>
+<script src="{{ asset('js/activity/delete.js') }} "></script>
 @endsection

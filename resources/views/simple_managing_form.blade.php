@@ -33,5 +33,5 @@
     
 </div>
 </div>
-<script src="{{ asset('js/delete_smf.js') }} "></script>
+<script src="{{ asset('js/basic_model/delete.js') }} "></script>
 @endsection

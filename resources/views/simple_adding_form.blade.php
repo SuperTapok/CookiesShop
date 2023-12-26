@@ -13,7 +13,7 @@
             <div class="mb-3 row">
                 <label for="name" class="col col-form-label">Название</label>
                 <div class="col">
-                    <input type="text" name="name" id="name" placeholder="Название..." class="form-control"/>
+                    <input type="text" name="name" id="name" placeholder="Название..." class="form-control" required/>
                 </div>
                 
             </div>
@@ -28,6 +28,6 @@
     </div>
 </div>
 </div>
-<script src="{{ asset('js/add_smf.js') }} "></script>
+<script src="{{ asset('js/basic_model/add.js') }} "></script>
 @endsection
 

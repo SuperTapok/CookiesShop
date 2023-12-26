@@ -1,5 +1,4 @@
 $("#form").submit( (e) => {
-    console.log('aaa');
     e.preventDefault();
     var form_data = $("#form").serialize();
     $.ajax({
