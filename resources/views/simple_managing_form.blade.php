@@ -1,5 +1,10 @@
 @extends('layouts/layout')
 @section('body')
+
+@include('templates.modal_alert')
+@include('templates.modal_confirm')
+
+
 <div class="row py-3">
     <h1>Управление {{ $name['plural'] }}</h1>
 </div>
@@ -12,6 +17,8 @@
                     <td>{{ $element['name'] }}</td>
                     <td>
                         <button class="del_btn btn btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#confirmModal"
                         data-route="{{ route($routes['route_delete'], ['id' => $element['id']]) }}">Удалить {{ $name['singular'] }}</button>
                     </td>
                     <td>
@@ -26,5 +33,5 @@
     
 </div>
 </div>
-<script src="{{ asset('js/manage.js') }} "></script>
+<script src="{{ asset('js/basic_model/delete.js') }} "></script>
 @endsection

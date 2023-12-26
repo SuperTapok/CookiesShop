@@ -1,47 +1,9 @@
 @extends('layouts/layout')
 @section('body')
-<div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5">Сообщение</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body" id="modalText">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" id="modalOk" class="btn btn-secondary" data-bs-dismiss="modal" 
-                    style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Ок</button>
-        </div>
-        </div>
-    </div>
-</div>
 
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5">Подтверждение</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body">
-            Оплатить заказ?
-        </div>
-        <div class="modal-footer">
-            <button type="button" 
-                    class="btn btn-primary" 
-                    id="confirmModalOk" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#alertModal"
-                    style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);"
-                    data-employee="" 
-                    data-order="">Да</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>
-        </div>
-        </div>
-    </div>
-</div>
+@include('templates.modal_alert')
+
+@include('templates.modal_confirm')
 
     @if ($products)
         <div class="row py-4">
@@ -57,26 +19,20 @@
                         @else
                             <div id="carousel{{ $product['id'] }}" class="carousel slide" data-bs-theme="dark">
                                 <div class="carousel-indicators">
-                                    @for ($i = 0; $i < $product['images']->count(); $i++)
-                                        @if ($i == 0)
-                                            <button type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide-to="{{ $i }}"
-                                                class="active" aria-current="true"></button>
-                                        @else
-                                            <button type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide-to="{{ $i }}"></button>
-                                        @endif
+                                    <button type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide-to="0"
+                                            class="active" aria-current="true"></button>
+                                    @for ($i = 1; $i < $product['images']->count(); $i++)
+                                        <button type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide-to="{{ $i }}"></button>
                                     @endfor
                                 </div>
                                 <div class="carousel-inner">
-                                    @for ($i = 0; $i < $product['images']->count(); $i++)
-                                        @if ($i == 0)
-                                            <div class="carousel-item active">
-                                                <img src="{{ asset($product['images'][$i]->url) }}" class="d-block w-100">
-                                            </div>
-                                        @else
-                                            <div class="carousel-item">
-                                                <img src="{{ asset($product['images'][$i]->url) }}" class="d-block w-100">
-                                            </div>
-                                        @endif                  
+                                    <div class="carousel-item active">
+                                        <img src="{{ asset($product['images'][0]->url) }}" class="d-block w-100">
+                                    </div>
+                                    @for ($i = 1; $i < $product['images']->count(); $i++)
+                                        <div class="carousel-item">
+                                            <img src="{{ asset($product['images'][$i]->url) }}" class="d-block w-100">
+                                        </div>
                                     @endfor
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ $product['id'] }}" data-bs-slide="prev">

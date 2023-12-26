@@ -1,5 +1,8 @@
 @extends('layouts/layout')
 @section('body')
+
+@include('templates.modal_alert')
+
 <div class="row py-3">
     <div class="col offset-1">
         <h2>Редактирование товара</h2>
@@ -7,7 +10,7 @@
 </div>
 <div class="row py-4">
     <div class="col-6 offset-3">
-        <form action="{{ route('edit_product_api') }}" class="card p-3 bg-light" method="POST" enctype="multipart/form-data">
+        <form class="card p-3 bg-light" id="form" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{ $product->id }}">
 
@@ -35,7 +38,7 @@
                 <label for="description" class="col col-form-label">Описание</label>
                 <div class="col">
                     <textarea id="description" name="description" 
-                    class="form-control" placeholder="Описание..." required>{{ $product->description }}</textarea>
+                    class="form-control" placeholder="Описание...">{{ $product->description }}</textarea>
                 </div>
             </div>
             <div class="form-check">
@@ -52,7 +55,7 @@
                 <div class="mb-3 row">
                     <label for="url" class="col col-form-label">Ссылка на курс</label>
                     <div class="col">
-                        <input type="url" name="url" id="url" class="form-control" value="{{ $product->typeable->url }}"/>
+                        <input type="url" name="url" id="url" class="form-control" value="{{ $product->typeable->url }}" required/>
                     </div>
                 </div>
 
@@ -60,21 +63,21 @@
                     <label for="start_date" class="col col-form-label">Дата начала</label>
                     <div class="col">
                         <input type="date" name="start_date" id="start_date" class="form-control" 
-                        value="{{ $product->typeable->start_date }}"/>
+                        value="{{ $product->typeable->start_date }}" required/>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="end_date" class="col col-form-label">Дата окончания</label>
                     <div class="col">
-                        <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $product->typeable->end_date }}"/>
+                        <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $product->typeable->end_date }}" required/>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="provider" class="col col-form-label">Поставщик курса</label>
                     <div class="col">
-                    <select name="provider" id="provider" class="form-control">                
+                    <select name="provider" id="provider" class="form-control" required>                
                         @foreach ($providers as $provider)
                             @if ($product->typeable->provider == $provider)
                                 <option value="{{ $provider->id }}" selected>{{ $provider->name }}</option>
@@ -90,7 +93,7 @@
                 <div class="mb-3 row">
                     <label for="themes[]" class="col col-form-label">Темы курса</label>
                     <div class="col">
-                        <select name="themes[]" id="themes" class="form-control" multiple>
+                        <select name="themes[]" id="themes" class="form-control" required multiple>
                         @foreach ($themes as $theme)
                             @if ($product->typeable->themes()->get()->first(function($item) use ($theme) {
                                     return $item->id == $theme->id;})
@@ -108,7 +111,7 @@
                 <div class="mb-3 row">
                     <label for="place" class="col col-form-label">Место расположения предмета</label>
                     <div class="col">
-                        <select name="place" id="place" class="form-control">                
+                        <select name="place" id="place" class="form-control" required>                
                             @foreach ($places as $place)
                                 @if ($product->typeable->place == $place)
                                     <option value="{{ $place->id }}" selected>{{ $place->address }}</option>
@@ -124,7 +127,7 @@
                 <div class="mb-3 row">
                     <label for="category" class="col col-form-label">Категория предмета </label>
                     <div class="col">
-                        <select name="category" id="category" class="form-control">                
+                        <select name="category" id="category" class="form-control" required>                
                             @foreach ($categories as $category)
                                 @if ($product->typeable->category == $category)
                                     <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
@@ -157,8 +160,6 @@
                 <script>
                     $(document).ready(function(){
                         $("#image_select").select2({
-                            width: '300px',
-                            height: '300px',
                             templateResult: function (url) {
                                 var $span = $("<span><img src='" + $(url.element).attr("data-url") + "' style='width:100px'/></span>");
                                 return $span;
@@ -180,10 +181,14 @@
                 </div>
             </div>
             <div class="text-center">
-                <button class="btn btn-primary" style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Изменить товар</button>
+                <button  type="submit" class="btn btn-primary"
+                id="addProduct"
+                data-bs-toggle="modal"
+                data-bs-target="#alertModal" style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Изменить товар</button>
             </div>
         </form>
     </div>
 </div>
 </div>
+<script src="{{asset('js/product/edit.js')}} "></script>
 @endsection

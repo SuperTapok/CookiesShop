@@ -179,8 +179,11 @@ class CatalogController extends Controller
                 $imageModel->refresh();
                 $product->images()->attach($imageModel);
             }
-        } 
-        return redirect()->back();
+        }
+
+        return $this->successResponse([
+            'message' => "Товар успешно добавлен!"
+        ]);
     }
 
 
@@ -261,7 +264,10 @@ class CatalogController extends Controller
                 $imageModel->refresh();
                 $product->images()->attach($imageModel);
             }
-        } 
-        return redirect()->back()->with('success_message', 'any message you want');
+        }
+
+        return $this->successResponse([
+            'message' => "Товар успешно изменён!"
+        ]);
     }
 }

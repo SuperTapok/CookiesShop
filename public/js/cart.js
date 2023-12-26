@@ -13,6 +13,7 @@ modalOk.onclick = function () {
 };
 
 $('.pay_btn').click(function (e) {
+    confirmModalText.innerHTML = 'Оплатить заказ?';
     confirmModalOk.setAttribute('data-employee', e.target.getAttribute('data-employee'));
     confirmModalOk.setAttribute('data-order', e.target.getAttribute('data-order'));
 });

@@ -8,25 +8,13 @@ $('.add_to_cart_btn').click(function (e) {
     })
 });
 
-$('.del_product_btn').click(function (e) { 
-    confirmModalOk.setAttribute('data-product', e.target.getAttribute('data-product'));
+$(document).ready(function () {
+    var btns = document.querySelectorAll('button[id^="changeVisibility"]');
+
+    for (var i=0, len=btns.length; i < len; i++) btns[i].onclick = changeVisibility;
 });
 
-confirmModalOk.onclick = function (e) { 
-    let product_id = e.target.getAttribute('data-product');
-    axios.post(`/api/catalog/delete_product/${product_id}`).then((res) => {
-        if(res.data.success) {
-            modalText.innerHTML = res.data.response.message;
-        }
-    })
-};
-
-modalOk.onclick = function () { 
-    window.location.href = '/'
-};
-
-changeVisibility.onclick = function (e) {
-    console.log('Привет');
+function changeVisibility (e) {
     let product_id = e.target.getAttribute('data-product');
     axios.post(`/api/catalog/hide_product/${product_id}`).then((res) => {
         if(res.data.success) {

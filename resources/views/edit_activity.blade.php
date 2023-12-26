@@ -1,24 +1,27 @@
 @extends('layouts/layout')
 @section('body')
+
+@include('templates.modal_alert')
+
 <div class="row py-3">
     <h1>Редактирование наградного действия</h1>
 </div>
 <div class="row">
     <div class="col-4 offset-4">
-        <form action="{{ route('edit_activity_api') }}" class="card p-3 bg-light" method="POST">
+        <form class="card p-3 bg-light" id="form">
             @csrf
             <div class="mb-3 row">
                 <label for="name" class="col col-form-label">Название</label>
                 <div class="col">
                     <input type="text" id='name' name="name" placeholder="Название..." class="form-control"
-                    value="{{ $activity->name }}"/>
+                    value="{{ $activity->name }}" required/>
                 </div>
-                <input type="hidden" name="id" value="{{ $activity->id }}">              
+                <input type="hidden" id='id' name="id" value="{{ $activity->id }}">              
             </div>
             <div class="mb-3 row">
                 <label for="cookies" class="col col-form-label">Количество пряней</label>
                 <div class="col">
-                    <input type="number" id='cookies' name="cookies" class="form-control" value="{{ $activity->cookies }}"/>
+                    <input type="number" id='cookies' name="cookies" class="form-control" value="{{ $activity->cookies }}" required/>
                 </div> 
             </div>
             <div class="mb-3 row">
@@ -28,10 +31,15 @@
                 </div> 
             </div>
             <div class="text-center">       
-                <button class="btn btn-success" style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Изменить</button>
+                <button class="btn btn-success" 
+                type="submit"
+                data-bs-toggle="modal"
+                data-bs-target="#alertModal"
+                style="background-color: rgb(255, 100, 0); border-color: rgb(255, 100,0);">Изменить</button>
             </div>
         </form>
     </div>
 </div>
+<script src="{{ asset('js/activity/edit.js') }}"></script>
 </div>
 @endsection
