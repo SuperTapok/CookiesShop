@@ -29,4 +29,5 @@ jobs:
             php artisan migrate;
             npm i;
             npm run build;
+            cp -r public/storage/images/* storage/images/;
             echo "Done!";
