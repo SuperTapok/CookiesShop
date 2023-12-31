@@ -81,8 +81,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
 
-    // TODO:
-    Route::get('order', [CartController::class,'getOrderPdf']);
+    Route::get('order', [CartController::class,'getOrderPdf'])->name('get_order');;
 
     Route::fallback(function () {
         return redirect('');

@@ -20,7 +20,7 @@
                         <td>{{ date('d.m.Y', strtotime($transaction['date'])) }}</td>
                         @if ($transaction['type'] == 'order')
                             <td style="color: red" >-{{ $transaction['sum'] }}</td>
-                            <td><a href="{{ asset($transaction['info']) }}">Чек</a></td>
+                            <td><a href="{{ route('get_order')."?order_id=".$transaction['info'] }}" target="_blank">Чек</a></td>
                         @else
                             <td style="color: green" >+{{ $transaction['sum'] }}</td>
                             <td>{{ $transaction['info'] }}</td>
