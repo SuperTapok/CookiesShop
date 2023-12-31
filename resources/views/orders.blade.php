@@ -61,7 +61,7 @@
                 @else
                     <td>{{ date('d.m.Y', strtotime($order->given_at)) }}</td>
                 @endif
-                <td><a href="{{ $order->receipt_url }}">Чек</a></td>
+                <td><a href="{{ route('get_order')."?order_id=".$order->id }}" target="_blank">Чек</a></td>
             </tr>
             @endforeach
         </tbody>

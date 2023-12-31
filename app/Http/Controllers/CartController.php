@@ -126,33 +126,21 @@ class CartController extends Controller
             $order->receipt_code = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 6);
 
             $order->save();
-            $order->refresh();
-
-            PDF::loadView('receipt_templates/receipt', 
-                          ['order' => $order, 'products' => $grouped_products])->save('storage/receipts/receipt_'.$order->receipt_code.'.pdf');
-
-            $order->receipt_url = 'storage/receipts/receipt_'.$order->receipt_code.'.pdf';
-            $order->save();
                         
             return $this->successResponse([
                 'message' => "Заказ успешно оплачен!",
                 'order_id' => $order->id,
             ]);
         }
-
-
-
     }
 
-    // TODO: переименовать и сделать 
     public function getOrderPdf(Request $request) 
     {
         $order = Order::find($request->get('order_id'));
 
-        return response()->file($order->receipt_url, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="receipt'.$order->receipt_code.'.pdf"'
-        ]);
+        $products = $order->products;
+        $grouped_products = $this->group_products($products);
 
+        return PDF::loadView('receipt_templates/receipt', ['order' => $order, 'products' => $grouped_products])->stream();
     }
 }

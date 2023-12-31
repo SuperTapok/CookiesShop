@@ -33,7 +33,7 @@ class TransactionsController extends Controller
                 "type" => "order",
                 "date" => $order->paid_at,
                 "sum" => $order->sum,
-                "info" => $order->receipt_url
+                "info" => $order->id
             ];
             $i++;
         }
