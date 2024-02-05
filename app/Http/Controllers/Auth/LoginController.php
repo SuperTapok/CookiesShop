@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -19,6 +20,9 @@ class LoginController extends Controller
     |
     */
 
+    protected $maxAttempts = 2;
+    protected $decayMinutes = 1;
+
     use AuthenticatesUsers;
 
     /**
@@ -27,6 +31,11 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    
+    protected function sendLockoutResponse(Request $request)
+    {
+        return redirect('captcha-form');
+    }
 
     /**
      * Create a new controller instance.

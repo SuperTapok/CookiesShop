@@ -8,7 +8,17 @@
                 <div class="card-header">Войти</div>
                 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div><br />
+                    @endif
+
+                    <form method="POST" action="{{ url('captcha-validation') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -38,7 +48,35 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        <div class="form-group mt-4 mb-4">
+                            <div class="captcha">
+                                <span>{!! captcha_img() !!}</span>
+                                    <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                        &#x21bb;
+                                    </button>
+                                </div>
+                            </div>
+                        <div class="form-group mb-4">
+                            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" required name="captcha">
+                        </div>
 
+                        <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+                        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+                        crossorigin="anonymous"></script>
+
+                        <script type="text/javascript">
+                            $('#reload').click(function () {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'reload-captcha',
+                                    success: function (data) {
+                                        $(".captcha span").html(data.captcha);
+                                    }
+                                });
+                            });
+                        </script>
+                        
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">

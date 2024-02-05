@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\CaptchaServiceController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoriesController;
@@ -25,6 +26,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+
+Route::get('captcha-form', [CaptchaServiceController::class, 'index']);
+Route::post('captcha-validation', [CaptchaServiceController::class, 'capthcaFormValidate']);
+Route::get('reload-captcha', [CaptchaServiceController::class, 'reloadCaptcha']);
 
 Route::middleware('auth')->group(function(){
     Route::redirect('', 'catalog', 301);
@@ -75,7 +80,6 @@ Route::middleware('auth')->group(function(){
         Route::get('reward_employee', [ActivityController::class, 'reward_employee'])->name('reward_employee');
         Route::get('', [ActivityController::class, 'index'])->name('manage_activities');
     });
-
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 
