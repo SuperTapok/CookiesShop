@@ -27,6 +27,11 @@ class Employee extends Model
         return $this->belongsToMany(Activity::class, 'employee_activity')->withPivot('given_at');
     }
 
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'favourite');
+    }
+
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);

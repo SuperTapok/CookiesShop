@@ -67,3 +67,8 @@ Route::prefix('category')->group(function() {
     Route::post('edit_category_api', [CategoriesController::class, 'edit_category_api'])->name('edit_category_api');
     Route::post('add_category_api', [CategoriesController::class, 'add_category_api'])->name('add_category_api');
 });
+
+Route::prefix('favourite')->group(function() {
+    Route::post('add_to_favourite/{employee_id}/{product_id}', [CatalogController::class, 'add_to_favourite_api'])->name('add_to_favourite_api');
+    Route::post('delete_from_favourite/{employee_id}/{product_id}', [CatalogController::class, 'delete_from_favourite_api'])->name('delete_from_favourite_api');
+});

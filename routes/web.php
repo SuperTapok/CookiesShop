@@ -7,6 +7,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\FavouritesController;
 use App\Http\Controllers\ProvidersController;
 use App\Http\Controllers\ThemesController;
 use App\Http\Controllers\ProfileController;
@@ -78,6 +79,8 @@ Route::middleware('auth')->group(function(){
 
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+
+    Route::get('favourite', [FavouritesController::class, 'index'])->name('favourites');
 
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
 

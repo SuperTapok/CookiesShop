@@ -14,6 +14,7 @@ use App\Models\Image;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class CatalogController extends Controller
 {
@@ -33,11 +34,22 @@ class CatalogController extends Controller
         })->get();
     }
 
-    public function index(){
+    public function get_favourite_list($user) {
+        $rows = DB::table('favourite')->where('employee_id', $user->employee_id)
+                                      ->get();
+
+        $favourites = [];
+        foreach ($rows as $favourite) {
+            array_push($favourites, $favourite->product_id);
+        }
+        return $favourites;
+    }
+
+    public function index(Request $request) {
         $products = Product::all();
 
         return view('catalog', ['products' => $products, 'categories' => $this->get_available_categories(), 
-        'themes' => $this->get_available_themes()]);
+        'themes' => $this->get_available_themes(), 'favourite_list' => $this->get_favourite_list($request->user())]);
     }
 
     public function category ($category_name='basic') {
@@ -268,6 +280,25 @@ class CatalogController extends Controller
 
         return $this->successResponse([
             'message' => "Товар успешно изменён!"
+        ]);
+    }
+
+    public function add_to_favourite_api($employee_id, $product_id) {
+        DB::table('favourite')->insert(['employee_id' => $employee_id, 'product_id' => $product_id]);
+
+        return  $this->successResponse([
+            'message' => "Товар добавлен в избранное"
+        ]);
+    }
+
+    public function delete_from_favourite_api($employee_id, $product_id) {
+        DB::table('favourite')->where('product_id', $product_id)
+                              ->where('employee_id', $employee_id)
+                              ->take(1)
+                              ->delete();
+
+        return  $this->successResponse([
+            'message' => "Товар удалён из избранного"
         ]);
     }
 }

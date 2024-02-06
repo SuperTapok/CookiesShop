@@ -24,5 +24,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Image::class, 'product_image');
     }
+
+    public function employees(): BelongsToMany
+    {
+        return $this->belongsToMany(Employee::class, 'favourite');
+    }
     
 }

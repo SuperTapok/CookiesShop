@@ -9,8 +9,10 @@
         {{ request()->user()->employee->name }} 
         {{ request()->user()->employee->middle_name }}!</h1>
     <p>{{ request()->user()->employee->position->company->name }}, {{ request()->user()->employee->position->name }}</p>
+    <a href="{{ route("favourites") }}">Избранное</a>
     <h2>Количество пряней на счету: {{ request()->user()->employee->cookies_num }}</h2>
     <a href="{{ route("transactions") }}">Посмотреть историю транзакций</a>
+    
 </div>
 </div>
 @endsection

@@ -1,38 +1,5 @@
 @extends('layouts/layout')
 
-@section('navbar')
-<div class="row py-3">
-    <div class="col-1">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Товары
-              </button>
-            <ul class="dropdown-menu">
-                @foreach ($categories as $category)
-                    <li><a class="dropdown-item" href="{{ route('category', ['category_name' => $category->name]) }}">{{ $category->name }}</a></li>
-                @endforeach
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="{{ route('category') }}">Товары</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-1" >
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Курсы
-              </button>
-            <ul class="dropdown-menu">
-                @foreach ($themes as $theme)
-                    <li><a class="dropdown-item" href="{{ route('theme', ['theme_name' => $theme->name]) }}">{{ $theme->name }}</a></li>
-                @endforeach
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="{{ route('theme') }}">Курсы</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-@endsection
-
 @section('body')
 
 @include('templates.modal_alert')
@@ -83,23 +50,13 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        @if (in_array($product->id, $favourite_list))
-                            <ul class="list-group list-group-flush" style="text-align: right; padding:0px; margin:0px -10px 0px 0px">
-                                <li class="list-group-item" style="padding:0px; ">
-                                    <button type="button" class="deleteFromFavourite btn" id="deleteFromFavourite{{ $product->id }}" data-product="{{ $product->id }}" data-employee="{{ request()->user()->employee_id }}" style="padding:5px; ">
-                                        <img src="/storage/images/system/yellow star.png" alt="favourite" width="20" height="20" class="d-inline-block align-text-top">
-                                    </button>    
-                                </li>
-                            </ul>
-                        @else
-                            <ul class="list-group list-group-flush" style="text-align: right; padding:0px; margin:0px -10px 0px 0px">
-                                <li class="list-group-item" style="padding:0px; ">
-                                    <button type="button" class="addToFavourite btn" id="addToFavourite{{ $product->id }}" data-product="{{ $product->id }}" data-employee="{{ request()->user()->employee_id }}" style="padding:5px;">
-                                        <img src="/storage/images/system/gray star.png" alt="favourite" width="20" height="20" class="d-inline-block align-text-top">
-                                    </button>    
-                                </li>
-                            </ul>
-                        @endif
+                        <ul class="list-group list-group-flush" style="text-align: right; padding:0px; margin:0px -10px 0px 0px">
+                            <li class="list-group-item" style="padding:0px; ">
+                                <button type="button" class="deleteFromFavourite btn" id="deleteFromFavourite{{ $product->id }}" data-product="{{ $product->id }}" data-employee="{{ request()->user()->employee_id }}" style="padding:5px; ">
+                                    <img src="/storage/images/system/yellow star.png" alt="favourite" width="20" height="20" class="d-inline-block align-text-top">
+                                </button>    
+                            </li>
+                        </ul>
                         <h5 class="card-title text-truncate">
                             <a href="{{ route('detail', ['product_id' => $product->id]) }}">{{ $product->name }}</a>
                         </h5>
@@ -174,23 +131,13 @@
                         </div>
                     @endif
                     <div class="card-body text-light">
-                        @if (in_array($product->id, $favourite_list))
-                            <ul class="list-group list-group-flush" style="text-align: right; padding:0px; margin:0px -10px 0px 0px">
-                                <li class="list-group-item" style="padding:0px; background-color: rgb(96, 96, 96);">
-                                    <button type="button" class="deleteFromFavourite btn" id="deleteFromFavourite{{ $product->id }}" data-product="{{ $product->id }}" data-employee="{{ request()->user()->employee_id }}" style="padding:5px; ">
-                                        <img src="/storage/images/system/yellow star.png" alt="favourite" width="20" height="20" class="d-inline-block align-text-top">
-                                    </button>    
-                                </li>
-                            </ul>
-                        @else
-                            <ul class="list-group list-group-flush" style="text-align: right; padding:0px; margin:0px -10px 0px 0px">
-                                <li class="list-group-item" style="padding:0px; background-color: rgb(96, 96, 96);">
-                                    <button type="button" class="addToFavourite btn" id="addToFavourite{{ $product->id }}" data-product="{{ $product->id }}" data-employee="{{ request()->user()->employee_id }}" style="padding:5px;">
-                                        <img src="/storage/images/system/gray star.png" alt="favourite" width="20" height="20" class="d-inline-block align-text-top">
-                                    </button>    
-                                </li>
-                            </ul>
-                        @endif
+                        <ul class="list-group list-group-flush" style="text-align: right; padding:0px; margin:0px -10px 0px 0px">
+                            <li class="list-group-item" style="padding:0px; background-color: rgb(96, 96, 96);">
+                                <button type="button" class="deleteFromFavourite btn" id="deleteFromFavourite{{ $product->id }}" data-product="{{ $product->id }}" data-employee="{{ request()->user()->employee_id }}" style="padding:5px; ">
+                                    <img src="/storage/images/system/yellow star.png" alt="favourite" width="20" height="20" class="d-inline-block align-text-top">
+                                </button>    
+                            </li>
+                        </ul>
                         <h5 class="card-title text-light text-truncate">
                             <a class="link-light" href="{{ route('detail', ['product_id' => $product->id]) }}">{{ $product->name }}</a>
                         </h5>
