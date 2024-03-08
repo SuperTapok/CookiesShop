@@ -79,11 +79,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 
-    Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
+    Route::get('logout', [LogoutController::class, 'perform'])->name('my_logout');
 
-    Route::get('order', [CartController::class,'getOrderPdf'])->name('get_order');;
-
-    Route::fallback(function () {
-        return redirect('');
-    });
+    Route::get('order', [CartController::class,'getOrderPdf'])->name('get_order');
 });

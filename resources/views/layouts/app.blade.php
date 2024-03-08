@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: rgb(255, 100, 0)">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('catalog') }}" aria-current="true">
-                    <img src="/storage/images/system/лого.png" alt="CookiesShop" width="30" height="30" class="d-inline-block align-text-center">
+                    <img src="uploads/images/system/лого.png" alt="CookiesShop" width="30" height="30" class="d-inline-block align-text-center">
                     Cookies.Shop
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

@@ -44,7 +44,7 @@
     <div class="col-6 offset-1">
         @if ($product->images->count() == 0)
             <div style="height: 450px" class="d-flex align-items-center">
-                <img src="/storage/images/system/Нет изображения.png" style="object-fit: contain; height:80%; width:100%" class="card-img-top">
+                <img src="uploads/images/system/Нет изображения.png" style="object-fit: contain; height:80%; width:100%" class="card-img-top">
             </div>    
         @elseif ($product->images->count() == 1)
             <div style="height: 450px;" class="d-flex align-items-center">
@@ -91,7 +91,7 @@
                                             data-bs-toggle="modal" 
                                             data-bs-target="#confirmModal">Удалить</button>
                         <button type="button" class="changeVisibility btn btn-secondary" id="changeVisibility" data-product="{{ $product->id }}">
-                            <img src="/storage/images/system/show.png" alt="CookiesShop" width="25" height="25" class="d-inline-block align-text-top">
+                            <img src="uploads/images/system/show.png" alt="CookiesShop" width="25" height="25" class="d-inline-block align-text-top">
                         </button>
                     </div>
             @endif

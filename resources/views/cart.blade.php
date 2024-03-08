@@ -13,7 +13,7 @@
                     <div class="row g-0">
                     <div class="col-md-4">
                         @if ($product['images']->count() == 0)
-                            <img src="/storage/images/system/Нет изображения.png" class="card-img-top">
+                            <img src="uploads/images/system/Нет изображения.png" class="card-img-top">
                         @elseif ($product['images']->count() == 1)
                             <img src="{{ $product['images']->first()->url }}" class="card-img-top">
                         @else

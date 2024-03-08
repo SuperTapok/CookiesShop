@@ -174,7 +174,7 @@ class CatalogController extends Controller
         if (isset($input['images'])){
             foreach ($input['images'] as $image) {
                 $imageModel = new Image();
-                $imageModel->url = Storage::url($image->store('public/images'));
+                $imageModel->url = 'uploads/'.$image->store('images', 'public_uploads');
                 $imageModel->save();
                 $imageModel->refresh();
                 $product->images()->attach($imageModel);
@@ -259,7 +259,7 @@ class CatalogController extends Controller
         if (isset($input['images'])){
             foreach ($input['images'] as $image) {
                 $imageModel = new Image();
-                $imageModel->url = Storage::url($image->store('public/images'));
+                $imageModel->url = 'uploads/'.$image->store('images', 'public_uploads');
                 $imageModel->save();
                 $imageModel->refresh();
                 $product->images()->attach($imageModel);

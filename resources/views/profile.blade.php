@@ -2,7 +2,7 @@
 @section('body')
 <div class="row py-4">
     <div class="col-1 offset-11">
-        <a href="{{ route("logout") }}" class="btn btn-danger">Выйти</a>
+        <a href="{{ route("my_logout") }}" class="btn btn-danger">Выйти</a>
     </div>
     
     <h1>Здравствуйте, {{ request()->user()->employee->surname }} 

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="icon" href="/storage/images/system/orange.png">
+    <link rel="icon" href="uploads/images/system/orange.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -21,7 +21,7 @@
             <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: rgb(255, 100, 0)">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ route('catalog') }}" aria-current="true">
-                        <img src="/storage/images/system/лого.png" alt="CookiesShop" width="30" height="30" class="d-inline-block align-text-center">
+                        <img src="uploads/images/system/лого.png" alt="CookiesShop" width="30" height="30" class="d-inline-block align-text-center">
                         Cookies.Shop
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Переключатель навигации">
@@ -47,13 +47,13 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('cart') }}">
-                                    <img src="/storage/images/system/cart.png" alt="CookiesShop" width="30" height="30" class="d-inline-block align-text-center">
+                                    <img src="uploads/images/system/cart.png" alt="CookiesShop" width="30" height="30" class="d-inline-block align-text-center">
                                         Корзина
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('profile') }}">
-                                    <img src="/storage/images/system/profile.png" alt="CookiesShop" width="30" height="30" class="d-inline-block align-text-center">
+                                    <img src="uploads/images/system/profile.png" alt="CookiesShop" width="30" height="30" class="d-inline-block align-text-center">
                                         {{ request()->user()->name }}
                                 </a>
                             </li>
